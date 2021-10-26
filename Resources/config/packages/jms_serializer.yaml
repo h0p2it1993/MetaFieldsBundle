@@ -1,0 +1,10 @@
+jms_serializer:
+    metadata:
+        directories:
+            MetaFields:
+                namespace_prefix: "KimaiPlugin\\MetaFieldsBundle"
+                path: "@MetaFieldsBundle/Resources/config/serializer"
+        warmup:
+            paths:
+                included:
+                    - "%kernel.root_dir%/../var/plugins/MetaFieldsBundle/Entity/"

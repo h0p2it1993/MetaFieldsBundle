@@ -1,0 +1,13 @@
+# --------------------------------------------------------------------------------------------------
+# Generate a new migration with:
+# bin/console doctrine:migrations:diff --em=default --configuration=var/plugins/MetaFieldsBundle/Migrations/metafields.yaml
+#
+# Execute all migrations with:
+# bin/console kimai:bundle:metafields:install
+# bin/console doctrine:migrations:migrate --em=default --configuration=var/plugins/MetaFieldsBundle/Migrations/metafields.yaml
+# --------------------------------------------------------------------------------------------------
+
+name: MetaFieldsMigrations
+table_name: bundle_migration_metafields
+migrations_namespace: MetaFieldsBundle\Migrations
+migrations_directory: var/plugins/MetaFieldsBundle/Migrations

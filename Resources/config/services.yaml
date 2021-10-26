@@ -1,0 +1,25 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    KimaiPlugin\MetaFieldsBundle\:
+        resource: '../../*'
+        exclude: '../../{Resources,Migrations}'
+
+    KimaiPlugin\MetaFieldsBundle\Controller\:
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']
+
+    KimaiPlugin\MetaFieldsBundle\API\:
+        resource: '../../API'
+        tags: ['controller.service_arguments']
+
+    KimaiPlugin\MetaFieldsBundle\Command\InstallCommand:
+        arguments: ['%kimai.plugin_dir%']
+
+    KimaiPlugin\MetaFieldsBundle\Repository\MetaFieldRuleRepository:
+        class:     Doctrine\ORM\EntityRepository
+        factory:   ['@doctrine.orm.entity_manager', getRepository]
+        arguments: ['KimaiPlugin\MetaFieldsBundle\Entity\MetaFieldRule']

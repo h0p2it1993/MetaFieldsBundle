@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="none">
+        <body>
+            <trans-unit id="Meta fields">
+                <source>Meta fields</source>
+                <target>Custom fields</target>
+            </trans-unit>
+            <trans-unit id="meta_fields.subtitle">
+                <source>meta_fields.subtitle</source>
+                <target>Configure custom fields</target>
+            </trans-unit>
+            <trans-unit id="meta_fields.no_rules">
+                <source>meta_fields.no_rules</source>
+                <target>No custom field defined for this type</target>
+            </trans-unit>
+            <trans-unit id="meta_fields.visibility">
+                <source>meta_fields.visibility</source>
+                <target>Restrict visibility</target>
+            </trans-unit>
+            <trans-unit id="label.key">
+                <source>label.key</source>
+                <target>Internal title</target>
+            </trans-unit>
+            <trans-unit id="label.help">
+                <source>label.help</source>
+                <target>Help text</target>
+            </trans-unit>
+            <trans-unit id="label.help_help">
+                <source>label.help_help</source>
+                <target>A short help text to describe the contents of the field</target>
+            </trans-unit>
+            <trans-unit id="help.mf_visibility">
+                <source>help.mf_visibility</source>
+                <target>Determines the visibility in the overview lists</target>
+            </trans-unit>
+            <trans-unit id="label.key_help">
+                <source>label.key_help</source>
+                <target>This value is used internally, eg. for invoice templates. Allowed characters are: lower case letters (a-z), digits (0-9) and the underscore (_).</target>
+            </trans-unit>
+            <trans-unit id="label.entityType">
+                <source>label.entityType</source>
+                <target>Object type</target>
+            </trans-unit>
+            <trans-unit id="label.mf_inputType">
+                <source>label.mf_inputType</source>
+                <target>Input field</target>
+            </trans-unit>
+            <trans-unit id="help.mf_inputType">
+                <source>help.mf_inputType</source>
+                <target>Type of the form field, cannot be changed afterwards</target>
+            </trans-unit>
+            <trans-unit id="label.defaultValue">
+                <source>label.defaultValue</source>
+                <target>Default value</target>
+            </trans-unit>
+            <trans-unit id="label.applies_to">
+                <source>label.applies_to</source>
+                <target>Applies to</target>
+            </trans-unit>
+            <trans-unit id="label.apply_all">
+                <source>label.apply_all</source>
+                <target>All</target>
+            </trans-unit>
+            <trans-unit id="label.mf_required">
+                <source>label.mf_required</source>
+                <target>Mandatory field</target>
+            </trans-unit>
+            <trans-unit id="help.mf_required">
+                <source>help.mf_required</source>
+                <target>Must be filled in to be able to save form</target>
+            </trans-unit>
+            <trans-unit id="label.deleteRuleInUse">
+                <source>label.deleteRuleInUse</source>
+                <target>The rule "%name%" is currently used in %count% entries. The stored values will not be deleted!</target>
+            </trans-unit>
+            <trans-unit id="label.permission">
+                <source>label.permission</source>
+                <target>Permission</target>
+            </trans-unit>
+            <trans-unit id="help.permission">
+                <source>help.permission</source>
+                <target>Must be either the name of a permission or the name of a user role (e.g. "hourly-rate_own_profile" or "ROLE_ADMIN"). If this value is filled, only users who own this permission will see the field.</target>
+            </trans-unit>
+            <trans-unit id="label.mf_weight">
+                <source>label.mf_weight</source>
+                <target>Order</target>
+            </trans-unit>
+            <trans-unit id="help.mf_weight">
+                <source>help.mf_weight</source>
+                <target>Larger numbers will appear further down on the form. Fields sharing the same order number will be displayed in the sequence they were created.</target>
+            </trans-unit>
+            <trans-unit id="label.mf_section">
+                <source>label.mf_section</source>
+                <target>Box name</target>
+            </trans-unit>
+            <trans-unit id="help.mf_section">
+                <source>help.mf_section</source>
+                <target>Freely selectable name of the box used in the user settings. Fields with the same box names are grouped together.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

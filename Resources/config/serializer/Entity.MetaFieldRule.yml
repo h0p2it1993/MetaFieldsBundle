@@ -1,0 +1,47 @@
+KimaiPlugin\MetaFieldsBundle\Entity\MetaFieldRule:
+    exclusion_policy: All
+    custom_accessor_order: [id, entityType, name, label, help, value, type, customer, project, activity, visible, required]
+    properties:
+        id:
+            include: true
+        entityType:
+            exclude: true
+        name:
+            include: true
+        label:
+            include: true
+        help:
+            include: true
+        value:
+            include: true
+        type:
+            include: true
+        customer:
+            exclude: true
+        project:
+            exclude: true
+        activity:
+            exclude: true
+        visible:
+            include: true
+        required:
+            include: true
+        permission:
+            exclude: true
+    virtual_properties:
+        getEntityType:
+            serialized_name: entityType
+            exp: "object.getTypeIdentifier()"
+            type: string
+        getCustomer:
+            serialized_name: customer
+            exp: "object.getCustomer() === null ? null : object.getCustomer().getId()"
+            type: integer
+        getProject:
+            serialized_name: project
+            exp: "object.getProject() === null ? null : object.getProject().getId()"
+            type: integer
+        getActivity:
+            serialized_name: activity
+            exp: "object.getActivity() === null ? null : object.getActivity().getId()"
+            type: integer

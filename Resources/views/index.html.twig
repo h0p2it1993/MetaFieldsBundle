@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+{% import 'macros/widgets.html.twig' as widgets %}
+{% import "macros/datatables.html.twig" as tables %}
+
+{% set columns = {
+    'label': {'class': 'alwaysVisible', 'title': 'label.name'|trans, 'orderBy': false},
+    'key': {'class': 'hidden-xs', 'orderBy': false},
+    'inputType': {'class': 'hidden-xs', 'title': 'label.mf_inputType'|trans, 'orderBy': false},
+    'defaultValue': {'class': 'hidden', 'title': 'label.defaultValue'|trans, 'orderBy': false},
+    'appliesTo': {'class': 'hidden', 'title': 'label.applies_to'|trans, 'orderBy': false},
+    'required': {'class': 'text-center hidden-xs w-min', 'title': 'label.mf_required'|trans, 'orderBy': false},
+    'visible': {'class': 'text-center w-min', 'orderBy': false},
+    'actions': {'class': 'actions alwaysVisible w-min', 'orderBy': false}
+} %}
+
+{% set tableName = 'meta_fields_admin' %}
+
+{% block page_title %}{{ 'Meta fields'|trans }}{% endblock %}
+{% block page_subtitle %}{{ 'meta_fields.subtitle'|trans }}{% endblock %}
+{% block page_actions %}
+    {% set event = actions(app.user, 'meta_fields_bundle', 'index') %}
+    {{ widgets.page_actions(event.actions) }}
+{% endblock %}
+
+{% block main_before %}
+    {{ tables.data_table_column_modal(tableName, columns) }}
+{% endblock %}
+
+{% block main %}
+
+    {% for type, config in types %}
+        {% embed '@AdminLTE/Widgets/box-widget.html.twig' with {boxtype: 'default', 'type': config.type, 'rules': config.rules, 'title': config.title, 'columns': columns, 'tableName': tableName} only %}
+            {% import 'macros/widgets.html.twig' as widgets %}
+            {% block box_title %}{{ title|trans }}{% endblock %}
+            {% block box_tools %}
+                {% set actions = {'create': {'url': path('custom_meta_fields_create', {'entityType': type}), 'class': 'modal-ajax-form btn-sm'}} %}
+                {{ widgets.button_group(actions) }}
+            {% endblock %}
+            {% block box_body_class %}{% if rules is not empty %}no-padding{% endif %}{% endblock %}
+            {% block box_body %}
+                {% if rules is empty %}
+                    {{ widgets.callout('info', 'meta_fields.no_rules') }}
+                {% else %}
+                    {% import 'macros/widgets.html.twig' as widgets %}
+                    {% import "macros/datatables.html.twig" as tables %}
+                    {{ tables.datatable_header(tableName, columns, null, {'boxClass': ''}) }}
+                    {% for rule in rules %}
+                        <tr class="modal-ajax-form open-edit" data-href="{{ path('custom_meta_fields_edit', {'id' : rule.id}) }}">
+                            <td class="{{ tables.data_table_column_class(tableName, columns, 'label') }}">{{ rule.label }}</td>
+                            <td class="{{ tables.data_table_column_class(tableName, columns, 'key') }}">{{ rule.name }}</td>
+                            <td class="{{ tables.data_table_column_class(tableName, columns, 'inputType') }}">{{ rule.type|form_field_type }}</td>
+                            <td class="{{ tables.data_table_column_class(tableName, columns, 'defaultValue') }}">
+                                {% if rule.type == 'boolean' %}
+                                    {{ widgets.label_boolean(rule.value) }}
+                                {% elseif rule.type == 'date' and rule.value is not empty %}
+                                    {{ rule.value|date_short }}
+                                {% elseif rule.type == 'datetime' and rule.value is not empty %}
+                                    {{ rule.value|date_full }}
+                                {% else %}
+                                    {{ rule.value }}
+                                {% endif %}
+                            </td>
+                            <td class="{{ tables.data_table_column_class(tableName, columns, 'appliesTo') }}">
+                                {% if not rule.customer is null or not rule.project is null or not rule.activity is null %}
+                                    {% if not rule.customer is null %}
+                                        {{ widgets.label_customer(rule.customer) }}<br>
+                                    {% endif %}
+                                    {% if not rule.project is null %}
+                                        {{ widgets.label_project(rule.project) }}<br>
+                                    {% endif %}
+                                    {% if not rule.activity is null %}
+                                        {{ widgets.label_activity(rule.activity) }}
+                                    {% endif %}
+                                {% else %}
+                                    {{ widgets.label('label.apply_all'|trans, 'success') }}
+                                {% endif %}
+                            </td>
+                            <td class="{{ tables.data_table_column_class(tableName, columns, 'required') }}">{{ widgets.label_boolean(rule.required) }}</td>
+                            <td class="{{ tables.data_table_column_class(tableName, columns, 'visible') }}">{{ widgets.label_visible(rule.visible) }}</td>
+                            <td class="{{ tables.data_table_column_class(tableName, columns, 'actions') }}">
+                                {% set actions = {
+                                    'edit': {'url': path('custom_meta_fields_edit', {'id' : rule.id}), 'class': 'modal-ajax-form'},
+                                    'trash': {'url': path('custom_meta_fields_delete', {'id': rule.id}), 'class': 'modal-ajax-form'}
+                                } %}
+
+                                {% set event = trigger('actions.meta_field_bundle_rule', {'actions': actions, 'view': 'index', 'rule': rule}) %}
+                                {{ widgets.table_actions(event.payload.actions) }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    {{ tables.data_table_footer(rules, null) }}
+                {% endif %}
+            {% endblock %}
+        {% endembed %}
+    {% endfor %}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        document.addEventListener('kimai.initialized', function() {
+            KimaiReloadPageWidget.create('kimai.metaFieldRuleUpdate');
+        });
+    </script>
+{% endblock %}

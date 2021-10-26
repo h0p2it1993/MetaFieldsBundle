@@ -1,0 +1,17 @@
+includes:
+    - vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor/phpstan/phpstan-doctrine/extension.neon
+    - vendor/phpstan/phpstan-symfony/rules.neon
+
+parameters:
+    scanDirectories:
+        - Migrations/
+    excludes_analyse:
+        - vendor/
+        - EventSubscriber/ExpenseMetaFieldSubscriber.php
+    treatPhpDocTypesAsCertain: false
+    inferPrivatePropertyTypeFromConstructor: true
+    ignoreErrors:
+        - '#Method (.*) has no return typehint specified.#'
+    checkMissingIterableValueType: false
+

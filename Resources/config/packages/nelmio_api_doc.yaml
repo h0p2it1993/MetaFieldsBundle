@@ -1,0 +1,4 @@
+nelmio_api_doc:
+    models:
+        names:
+            - { alias: MetaFieldRule, type: KimaiPlugin\MetaFieldsBundle\Entity\MetaFieldRule, groups: [Default, Entity, MetaField] }

@@ -1,0 +1,112 @@
+{% extends app.request.xmlHttpRequest ? 'form.html.twig' : 'base.html.twig' %}
+{% import "macros/widgets.html.twig" as widgets %}
+
+{% block page_title %}{{ 'Meta fields'|trans }}{% endblock %}
+{% block page_subtitle %}{{ 'meta_fields.subtitle'|trans }}{% endblock %}
+{% block page_actions %}
+    {% set event = actions(app.user, 'meta_fields_bundle', 'edit') %}
+    {{ widgets.page_actions(event.actions) }}
+{% endblock %}
+
+{% block main %}
+    {% set type = entityType|replace({'App\\Entity\\': '', 'KimaiPlugin\\ExpensesBundle\\Entity\\': ''})|lower %}
+    {% set name = 'create'|trans %}
+    {% if rule.id %}
+        {% set name = rule.label ~ ' (' ~ rule.name ~ ')' %}
+    {% endif %}
+
+    {% set title = ('label.' ~ type)|trans %}
+    {% if rule.timesheetRule %}
+        {% set title = 'menu.admin_timesheet'|trans %}
+    {% elseif rule.expenseRule %}
+        {% set title = 'Expenses'|trans %}
+    {% endif %}
+
+    {% set formEditTemplate = app.request.xmlHttpRequest ? 'default/_form_modal.html.twig' : 'default/_form.html.twig' %}
+    {% set formOptions = {
+        'title': title ~ ': ' ~ name,
+        'form': form,
+        'back': path('custom_meta_fields')
+    } %}
+    {% embed formEditTemplate with formOptions %}
+        {% block form_body %}
+            <div class="row">
+                <div class="col-md-8">
+                    {% if form.name is defined %}
+                        {{ form_row(form.name) }}
+                    {% endif %}
+                </div>
+                <div class="col-md-4">
+                    {% if form.type is defined %}
+                        {{ form_row(form.type) }}
+                    {% endif %}
+                </div>
+            </div>
+            {{ form_row(form.displayName) }}
+            {{ form_row(form.help) }}
+            {{ form_row(form.value) }}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.required) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.visible) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="{% if form.section is defined %}col-md-6{% else %}col-md-12{% endif %}">
+                    {{ form_row(form.weight) }}
+                </div>
+                {% if form.section is defined %}
+                <div class="col-md-6">
+                    {{ form_row(form.section) }}
+                </div>
+                {% endif %}
+            </div>
+
+            <fieldset>
+                <legend>{{ 'meta_fields.visibility'|trans }}</legend>
+                {% set cols = 0 %}
+                {% if form.customer is defined %}
+                    {% set cols = cols + 1 %}
+                {% endif %}
+                {% if form.project is defined %}
+                    {% set cols = cols + 1 %}
+                {% endif %}
+                {% if form.activity is defined %}
+                    {% set cols = cols + 1 %}
+                {% endif %}
+                {% set colLength = 0 %}
+                {% if cols == 1 %}
+                    {% set colLength = 12 %}
+                {% elseif cols == 2 %}
+                    {% set colLength = 6 %}
+                {% elseif cols == 3 %}
+                    {% set colLength = 4 %}
+                {% endif %}
+                <div class="row">
+                    {% if form.customer is defined %}
+                        <div class="col-md-{{ colLength }}">
+                            {{ form_row(form.customer) }}
+                        </div>
+                    {% endif %}
+                    {% if form.project is defined %}
+                        <div class="col-md-{{ colLength }}">
+                            {{ form_row(form.project) }}
+                        </div>
+                    {% endif %}
+                    {% if form.activity is defined %}
+                        <div class="col-md-{{ colLength }}">
+                            {{ form_row(form.activity) }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                {{ form_row(form.permission) }}
+            </fieldset>
+
+            {{ form_widget(form) }}
+        {% endblock %}
+    {% endembed %}
+
+{% endblock %}

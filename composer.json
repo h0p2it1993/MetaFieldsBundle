@@ -1,0 +1,60 @@
+{
+    "name": "keleo/meta-fields-bundle",
+    "description": "Manage custom fields through an administration screen for: user preferences, customer, projects, activities, timesheets",
+    "homepage": "https://www.kimai.org/store/custom-fields-bundle.html",
+    "type": "kimai-plugin",
+    "version": "1.17",
+    "keywords": [
+        "kimai",
+        "kimai-plugin"
+    ],
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Kevin Papst",
+            "email": "info@keleo.de",
+            "homepage": "https://www.keleo.de"
+        }
+    ],
+    "extra": {
+        "kimai": {
+            "require": "1.14",
+            "version": "1.17",
+            "name": "Custom fields"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "KimaiPlugin\\MetaFieldsBundle\\": ""
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "7.2.9"
+        },
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "codestyle": "vendor/bin/php-cs-fixer fix --dry-run --verbose --show-progress=none",
+        "codestyle-fix": "vendor/bin/php-cs-fixer fix",
+        "codestyle-check": "vendor/bin/php-cs-fixer fix --dry-run --verbose --config=.php_cs.dist --using-cache=no --show-progress=none --format=checkstyle",
+        "phpstan": "vendor/bin/phpstan analyse . -c phpstan.neon --level=7",
+        "linting": [
+            "composer validate",
+            "@codestyle-check",
+            "@phpstan"
+        ]
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.15",
+        "kevinpapst/kimai2": "dev-master",
+        "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan-doctrine": "^0.12",
+        "phpstan/phpstan-symfony": "^0.12",
+        "symfony/console": "^4.0",
+        "symfony/event-dispatcher": "^4.0"
+    }
+}

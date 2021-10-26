@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages.en.xliff">
+        <body>
+            <trans-unit id="Meta fields">
+                <source>Meta fields</source>
+                <target>Eigene Felder</target>
+            </trans-unit>
+            <trans-unit id="meta_fields.subtitle">
+                <source>meta_fields.subtitle</source>
+                <target>Konfigurieren Sie eigene Felder</target>
+            </trans-unit>
+            <trans-unit id="meta_fields.no_rules">
+                <source>meta_fields.no_rules</source>
+                <target>Es wurde bisher kein benutzerdefiniertes Feld für diesen Typ erstellt</target>
+            </trans-unit>
+            <trans-unit id="meta_fields.visibility">
+                <source>meta_fields.visibility</source>
+                <target>Sichtbarkeit einschränken</target>
+            </trans-unit>
+            <trans-unit id="label.key">
+                <source>label.key</source>
+                <target>Interner Titel</target>
+            </trans-unit>
+            <trans-unit id="label.help">
+                <source>label.help</source>
+                <target>Hilfe-Text</target>
+            </trans-unit>
+            <trans-unit id="label.help_help">
+                <source>label.help_help</source>
+                <target>Ein kurzer Hilfe-Text um den Inhalt des Feldes zu beschreiben</target>
+            </trans-unit>
+            <trans-unit id="help.mf_visibility">
+                <source>help.mf_visibility</source>
+                <target>Bestimmt die Sichtbarkeit in den Übersichtslisten</target>
+            </trans-unit>
+            <trans-unit id="label.key_help">
+                <source>label.key_help</source>
+                <target>Dieser Wert wird intern verwendet, u.a. in Rechnungsvorlagen. Erlaubte Zeichen sind: Kleinbuchstaben (a-z), Ziffern (0-9) und der Unterstrich (_).</target>
+            </trans-unit>
+            <trans-unit id="label.entityType">
+                <source>label.entityType</source>
+                <target>Objekt Typ</target>
+            </trans-unit>
+            <trans-unit id="label.mf_inputType">
+                <source>label.mf_inputType</source>
+                <target>Eingabefeld</target>
+            </trans-unit>
+            <trans-unit id="help.mf_inputType">
+                <source>help.mf_inputType</source>
+                <target>Typ des Formularfeldes, kann nicht nachträglich geändert werden</target>
+            </trans-unit>
+            <trans-unit id="label.defaultValue">
+                <source>label.defaultValue</source>
+                <target>Standardwert</target>
+            </trans-unit>
+            <trans-unit id="label.applies_to">
+                <source>label.applies_to</source>
+                <target>Gilt für</target>
+            </trans-unit>
+            <trans-unit id="label.apply_all">
+                <source>label.apply_all</source>
+                <target>Alle</target>
+            </trans-unit>
+            <trans-unit id="label.mf_required">
+                <source>label.mf_required</source>
+                <target>Pflichtfeld</target>
+            </trans-unit>
+            <trans-unit id="help.mf_required">
+                <source>help.mf_required</source>
+                <target>Muss ausgefüllt werden, um Formular speichern zu können</target>
+            </trans-unit>
+            <trans-unit id="label.deleteRuleInUse">
+                <source>label.deleteRuleInUse</source>
+                <target>Die Regel "%name%" wird aktuell in %count% Einträgen verwendet. Die hinterlegten Werte werden nicht mit gelöscht!</target>
+            </trans-unit>
+            <trans-unit id="label.permission">
+                <source>label.permission</source>
+                <target>Berechtigung</target>
+            </trans-unit>
+            <trans-unit id="help.permission">
+                <source>help.permission</source>
+                <target>Muss entweder der Name einer Berechtigung oder der Name einer Benutzerrolle sein (z.B. "hourly-rate_own_profile" oder "ROLE_ADMIN"). Wenn dieser Wert gefüllt ist, werden nur Benutzer das Feld sehen, welche die angegebene Berechtigung besitzen.</target>
+            </trans-unit>
+            <trans-unit id="label.mf_weight">
+                <source>label.mf_weight</source>
+                <target>Reihenfolge</target>
+            </trans-unit>
+            <trans-unit id="help.mf_weight">
+                <source>help.mf_weight</source>
+                <target>Felder mit größeren Zahlen erscheinen weiter unten im Formular. Felder mit gleicher Zahl werden in der Reihenfolge dargestellt, in der sie erstellt wurden.</target>
+            </trans-unit>
+            <trans-unit id="label.mf_section">
+                <source>label.mf_section</source>
+                <target>Box-Name</target>
+            </trans-unit>
+            <trans-unit id="help.mf_section">
+                <source>help.mf_section</source>
+                <target>Frei wählbare Bezeichnung der Box, die in den Benutzereinstellungen verwendet wird. Felder mit den gleichen Box-Namen werden gemeinsam gruppiert.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
